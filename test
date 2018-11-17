@@ -1,0 +1,30 @@
+import numpy as np
+import function
+import copy
+nodeA = np.array([[4, 7, 3],
+                  [1, 0, 2],
+                  [8, 5, 6]])
+goal = np.array([[1, 2, 3],
+                 [4, 5, 6],
+                 [7, 8, 0]])
+closed = copy.deepcopy(nodeA)
+i = 0
+while(1):
+    i = i + 1
+    print('第' + str(i) + '次')
+    #print(nodeA)
+    next1, next2, next3, next4, closed = function.AllNode(nodeA, closed)
+    bestNode = function.bestNode(next1, next2, next3, next4, nodeA, goal, closed)
+    #print(bestNode)
+    closed = np.append(closed, next1, 0)
+    closed = np.append(closed, next2, 0)
+    closed = np.append(closed, next3, 0)
+    closed = np.append(closed, next4, 0)
+    if function.isGoal(bestNode, goal):
+        print('已找到目标节点！')
+        break
+    nodeA = bestNode
+
+
+
+
